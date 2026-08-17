@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="TASS Readiness & Resilience Simulator — a fictional training simulation for lifecycle, supply chain, process improvement and biodiversity-related sourcing risk in In-Service support." />
+  <title>TASS Readiness & Resilience Simulator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div class="brand-lockup">
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 48 48" role="img"><path d="M8 24h10l7-12h6l-4 12h11l4-5h3l-2 8 2 8h-3l-4-5H27l4 12h-6l-7-12H8l-5 5v-6l5-5Z"/></svg>
+        </div>
+        <div>
+          <p class="eyebrow">IN-SERVICE LEARNING SIMULATION</p>
+          <h1>TASS Readiness &amp; Resilience Simulator</h1>
+        </div>
+      </div>
+      <div class="top-actions">
+        <span class="save-status" title="Progress is stored only in this browser on this device"><i></i> Local autosave</span>
+        <button id="helpBtn" class="ghost-btn" type="button">How to play</button>
+        <button id="resetBtn" class="ghost-btn danger-ghost" type="button">Reset</button>
+      </div>
+    </header>
+
+    <main id="mainContent"></main>
+  </div>
+
+  <div id="modalRoot" aria-live="polite"></div>
+  <div id="toastRoot" aria-live="polite" aria-atomic="true"></div>
+  <script src="app.js"></script>
+</body>
+</html>
