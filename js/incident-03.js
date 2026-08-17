@@ -1,0 +1,27 @@
+incidents.push({
+    id:"INC-03",
+    month:8,
+    title:"Supply alert — Material sourcing restriction extends lead time",
+    summary:"A supplier reports that a material used in a component family is affected by new permitting constraints in a sourcing region with sensitive ecosystems. Lead time is expected to increase sharply. Traceability beyond the first-tier supplier is incomplete.",
+    data:[["Current lead time","16 WEEKS"],["Forecast lead time","28 WEEKS"],["Qualified sources","1"],["Traceability","PARTIAL"]],
+    constraints:["No unqualified material substitution","Existing serviceable stock covers approximately five months","Repair recovery is technically feasible","The disruption may persist beyond one planning cycle"],
+    lens:"Treat biodiversity-related sourcing pressure as a supply-chain and engineering dependency. The right response is not a generic environmental claim; it is better traceability, recovery, diversification or qualified redesign.",
+    broader:"Raw-material production can also be associated with water demand, energy use, waste and CO2 emissions. The simulator only treats those as supporting context when traceable evidence would exist; it does not invent environmental benefits or penalties.",
+    operational:[
+      {id:"A",title:"Consume available stock and reassess later",desc:"Use the five-month buffer to avoid immediate programme disruption.",tags:["No immediate cost","Defers decision"],delta:{readiness:4,resilience:-7,lifecycle:-2,process:-1,exposure:6},feedback:"You buy time by consuming the existing buffer, but exposure rises because the underlying sourcing dependency remains unchanged."},
+      {id:"B",title:"Prioritise repair and recovery of existing units",desc:"Protect new stock by accelerating approved recovery routes while the supply situation is assessed.",tags:["Preserves stock","Uses existing assets"],delta:{readiness:3,resilience:6,lifecycle:8,process:3,exposure:-4},feedback:"You reduce immediate demand for new supply and preserve scarce stock, creating time for a structural sourcing response."},
+      {id:"C",title:"Request an unqualified alternative material",desc:"Ask the supplier to substitute material immediately to restore the old lead time.",tags:["Fast in theory","Not technically acceptable"],delta:{readiness:-8,resilience:-6,lifecycle:-3,process:-5,exposure:1},feedback:"The simulation rejects shortcuts that bypass qualification. Sourcing pressure does not remove technical assurance requirements."},
+      {id:"D",title:"Place a large forward order with the same source",desc:"Increase coverage by purchasing significantly more material before constraints tighten further.",tags:["Buffer building","Concentration remains"],delta:{readiness:5,resilience:1,lifecycle:-5,process:0,exposure:8},feedback:"You may create a temporary buffer, but deepen dependency on the same constrained source and commit more material to the existing design."}
+    ],
+    investigation:[
+      {id:"A",title:"The new permitting constraint is the only root cause",desc:"An external biodiversity-related restriction is outside the support organisation's control.",correct:false,feedback:"The external constraint triggered the event, but the controllable exposure comes from concentration, limited traceability and weak alternatives."},
+      {id:"B",title:"Single-source dependency and incomplete upstream traceability",desc:"The system has little visibility or qualified optionality when upstream conditions change.",correct:true,feedback:"Correct. The event reveals a resilience gap: concentration plus incomplete traceability leaves few informed response routes."},
+      {id:"C",title:"The supplier should have kept more inventory",desc:"The first-tier supplier is solely responsible for preventing disruption.",correct:false,feedback:"Supplier inventory may help, but it does not remove structural concentration or traceability gaps."},
+      {id:"D",title:"Repair activity is too high",desc:"Recovering units is the reason material supply became constrained.",correct:false,feedback:"Repair reduces new-material demand in this scenario; it is part of the resilience response, not the cause."}
+    ],
+    investments:[
+      {id:"secondarySupplier",title:"Qualify a second supply route",cost:620,desc:"Launch technical and procurement qualification of an alternate source to reduce concentration risk.",tags:["High cost","Major resilience effect"],delta:{resilience:13,process:3,exposure:-12,lifecycle:2},feedback:"You create qualified optionality. This does not remove all upstream impact, but materially reduces single-source exposure."},
+      {id:"traceability",title:"Build deeper material traceability",cost:280,desc:"Extend supplier mapping beyond tier one for the affected material family and integrate risk triggers into sourcing reviews.",tags:["Visibility","Biodiversity-relevant"],delta:{resilience:7,process:6,exposure:-10,lifecycle:1},feedback:"You improve your ability to detect and interpret upstream ecosystem-related sourcing risk before it becomes an availability crisis."},
+      {id:"recoveryProgram",title:"Expand component recovery programme",cost:330,desc:"Increase inspection, repair and recertification routes for returned units to reduce dependence on newly supplied material.",tags:["Lifecycle","Demand reduction"],delta:{resilience:8,lifecycle:11,exposure:-7,process:3},feedback:"You reduce pressure on new supply by extracting more useful life from components already in the support system."}
+    ]
+  });
