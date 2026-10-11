@@ -34,20 +34,26 @@ body{
     linear-gradient(135deg,rgba(255,255,255,.04),transparent 45%),
     linear-gradient(160deg,rgba(23,43,83,.96),rgba(30,28,77,.96));
 }
-.game-title-row h2{max-width:860px;text-wrap:balance}
+.game-title-row{grid-template-columns:minmax(0,1fr);align-items:start}
+.game-title-row h2{max-width:900px;font-size:clamp(54px,6vw,88px);line-height:.9;letter-spacing:-.055em;text-wrap:balance}
 .game-title-row>div>p{max-width:760px;font-size:clamp(14px,1.15vw,18px);line-height:1.65;color:#d7e4f5}
+.game-stats{width:min(100%,460px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:18px}
+.game-stats>div{min-height:62px;display:flex;align-items:center;justify-content:space-between;gap:8px}
 .game-start-btn{box-shadow:0 18px 40px rgba(86,93,255,.25)}
 
-.mission-deck{gap:10px}
+.mission-deck{grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
 .mission-deck-card{
   isolation:isolate;
-  min-height:168px;
-  padding:14px;
-  align-items:end;
+  grid-column:span 2;
+  min-height:190px;
+  padding:0;
+  display:block;
   background:#0b1730!important;
   border-color:rgba(255,255,255,.13);
   box-shadow:0 12px 28px rgba(4,7,20,.25);
 }
+.mission-deck-card.m4{grid-column:2 / span 2}
+.mission-deck-card.m5{grid-column:4 / span 2}
 .mission-deck-card::before{
   content:"";position:absolute;inset:0;z-index:-1;
   background:linear-gradient(180deg,rgba(4,10,25,.05) 10%,rgba(7,12,31,.55) 52%,rgba(7,10,26,.96) 100%);
@@ -55,11 +61,11 @@ body{
 .mission-deck-card>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;filter:saturate(.82) contrast(1.04)}
 .mission-deck-card:hover>img{filter:saturate(1) contrast(1.06);transform:scale(1.045)}
 .mission-deck-card>img{transition:transform .35s ease,filter .35s ease}
-.mission-deck-card .mission-deck-number{position:absolute;top:12px;left:13px;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.6)}
-.mission-deck-card>div:not(.mission-deck-number){position:relative;z-index:1}
-.mission-deck-card>div>span{color:#a9efff;text-shadow:0 1px 8px #061020}
-.mission-deck-card>div>strong{font-size:12px;text-shadow:0 2px 8px #061020}
-.mission-deck-card>div>p{color:#e4ebf8;text-shadow:0 2px 8px #061020}
+.mission-deck-card .mission-deck-number{position:absolute;top:13px;left:14px;z-index:2;font-size:20px;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.75)}
+.mission-deck-card>div:not(.mission-deck-number){position:absolute;left:14px;right:14px;bottom:13px;z-index:2;min-width:0}
+.mission-deck-card>div>span{font-size:7px;color:#a9efff;text-shadow:0 1px 8px #061020}
+.mission-deck-card>div>strong{max-width:calc(100% - 24px);font-size:14px;line-height:1.12;text-shadow:0 2px 8px #061020;text-wrap:balance}
+.mission-deck-card>div>p{margin-top:5px;font-size:9px;line-height:1.35;color:#e4ebf8;text-shadow:0 2px 8px #061020}
 .mission-deck-card>i{position:absolute;right:12px;top:12px;background:rgba(7,14,34,.62);backdrop-filter:blur(6px)}
 
 .coach-character{
@@ -77,6 +83,25 @@ body{
 .coach-character.celebrate .coach-photo-status{background:#ff85d4;box-shadow:0 0 0 4px rgba(255,133,212,.16),0 0 18px #ff85d4}
 .coach-bubble{background:linear-gradient(145deg,rgba(63,53,151,.98),rgba(21,35,78,.99))}
 .coach-bubble>p{line-height:1.55}
+
+/* ORA is part of the layout, never an overlay over the landing content. */
+.landing-coach-mount{width:min(1380px,calc(100vw - 36px));margin:18px auto 42px;display:flex;justify-content:flex-end;position:relative;z-index:3}
+.landing-coach-mount .floating-coach{position:relative;right:auto;bottom:auto;width:min(570px,100%);grid-template-columns:124px minmax(0,1fr);gap:12px;align-items:center;filter:drop-shadow(0 18px 32px rgba(0,0,0,.28))}
+.landing-coach-mount .coach-visual-wrap{transform:none;display:grid;place-items:center}
+.landing-coach-mount .coach-character{width:118px;height:118px;border-radius:30px;animation:none}
+.landing-coach-mount .coach-photo{object-position:50% 16%}
+.landing-coach-mount .coach-bubble{min-width:0;padding:15px 16px;border-radius:22px}
+.landing-coach-mount .coach-bubble-head{gap:10px}
+.landing-coach-mount .coach-bubble-head>div{min-width:0}
+.landing-coach-mount .coach-bubble-head span,.landing-coach-mount .coach-bubble-head strong,.landing-coach-mount .coach-bubble>p{overflow-wrap:anywhere}
+
+/* Compact in-mission ORA without allowing the portrait into the copy column. */
+.mission-coach-mount .floating-coach{grid-template-columns:78px minmax(0,1fr);gap:9px;align-items:center}
+.mission-coach-mount .coach-visual-wrap{transform:none}
+.mission-coach-mount .coach-character{width:72px;height:72px;border-radius:20px;animation:none}
+.mission-coach-mount .coach-bubble{min-width:0;padding:11px 12px;border-radius:17px}
+.mission-coach-mount .coach-bubble-head>div{min-width:0}
+.mission-coach-mount .coach-bubble-head span,.mission-coach-mount .coach-bubble-head strong,.mission-coach-mount .coach-bubble>p{overflow-wrap:anywhere}
 
 .mission-stage-visual{min-height:470px;background:#071224}
 .incident-visual-hero{position:absolute;inset:0;margin:0;overflow:hidden;background:#071224}
@@ -99,19 +124,24 @@ body{
 
 @media(max-width:1100px){
   .mission-stage-visual{min-height:420px}
+  .mission-deck{grid-template-columns:repeat(6,minmax(0,1fr))}
+}
+@media(max-width:900px){
   .mission-deck{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .mission-deck-card,.mission-deck-card.m4,.mission-deck-card.m5{grid-column:auto}
   .mission-deck-card:last-child{grid-column:1/-1}
 }
 @media(max-width:720px){
   .topbar{align-items:flex-start}.topbar .brand-lockup h1{font-size:14px}.topbar .eyebrow{font-size:7px}
   .save-status{display:none}.top-actions{gap:5px}.ghost-btn{padding:8px 9px;font-size:9px}
-  .mission-deck{grid-template-columns:1fr}.mission-deck-card:last-child{grid-column:auto}.mission-deck-card{min-height:145px}
+  .game-title-row h2{font-size:clamp(44px,14vw,66px);line-height:.92}.game-stats{grid-template-columns:1fr}.game-stats>div{min-height:52px}
+  .mission-deck{grid-template-columns:1fr}.mission-deck-card,.mission-deck-card.m4,.mission-deck-card.m5,.mission-deck-card:last-child{grid-column:auto}.mission-deck-card{min-height:180px}
   .mission-stage-visual{min-height:360px}.incident-visual-hero>img{object-position:42% center}
   .incident-visual-hero figcaption{left:10px;right:auto;top:48px}
   .stage-overlay-copy{background:linear-gradient(180deg,rgba(6,13,31,.72),rgba(6,13,31,.96))}
   .stage-overlay-copy p{font-size:10px}.mission-brief-panel h3{font-size:34px}
-  .floating-coach{grid-template-columns:92px 1fr}.coach-character{width:100px;height:132px}
-  .mission-coach-mount .coach-character{width:76px;height:104px;border-radius:22px 22px 13px 13px}
+  .landing-coach-mount{width:calc(100vw - 16px);margin:12px auto 26px}.landing-coach-mount .floating-coach{grid-template-columns:82px minmax(0,1fr);gap:8px}.landing-coach-mount .coach-character{width:78px;height:78px;border-radius:21px}.landing-coach-mount .coach-bubble{padding:12px 13px}
+  .mission-coach-mount .floating-coach{grid-template-columns:66px minmax(0,1fr);gap:7px}.mission-coach-mount .coach-character{width:62px;height:62px;border-radius:17px}
 }
 
 @media(prefers-reduced-motion:reduce){.incident-visual-hero>img,.mission-deck-card>img{animation:none!important;transition:none!important}}

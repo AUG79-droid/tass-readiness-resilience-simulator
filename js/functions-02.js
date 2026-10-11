@@ -63,7 +63,7 @@ function renderCoachWidget(){
   </aside>`;
 }
 
-function renderLandingCoach(){ return `<div id="coachMount">${renderCoachWidget()}</div>`; }
+function renderLandingCoach(){ return `<div id="coachMount" class="landing-coach-mount">${renderCoachWidget()}</div>`; }
 
 function bindCoachControls(){
   const min=document.getElementById('coachMinimize');
