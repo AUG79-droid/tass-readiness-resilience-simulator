@@ -56,6 +56,17 @@ function renderScenarioVisual(inc){
 }
 
 function renderIncidentHeroVisual(inc){
+  const art={
+    'INC-01':{src:'assets/missions/mission-01-aog-recovery.jpg',alt:'Maintenance team evaluating an AOG recovery route in a hangar',label:'AOG RECOVERY',status:'96-HOUR WINDOW'},
+    'INC-02':{src:'assets/missions/mission-02-repair-flow.jpg',alt:'Aerospace repair centre coordinating a component repair flow',label:'REPAIR FLOW',status:'QUEUE PRESSURE'},
+    'INC-03':{src:'assets/missions/mission-03-supply-traceability.jpg',alt:'Procurement and engineering specialists assessing material traceability',label:'SUPPLY CONTINUITY',status:'SOURCE CONSTRAINT'},
+    'INC-04':{src:'assets/missions/mission-04-design-feedback.jpg',alt:'Engineering and maintenance specialists reviewing recurring failure evidence',label:'DESIGN FEEDBACK',status:'RECURRING SIGNAL'},
+    'INC-05':{src:'assets/missions/mission-05-stress-test.jpg',alt:'Operations team coordinating two aircraft during a resilience stress test',label:'SYSTEM RESILIENCE',status:'COMBINED SHOCK'}
+  }[inc.id];
+  if(art) return `<figure class="incident-visual-hero mission-art-${inc.id.slice(-2)}" aria-label="Mission scene">
+    <img src="${art.src}" alt="${art.alt}" width="1600" height="900" decoding="async" fetchpriority="high" />
+    <figcaption><span>${art.label}</span><b>${art.status}</b></figcaption>
+  </figure>`;
   if(inc.id!=='INC-01' || state.phase!=='operational') return '';
   return `<section class="incident-visual-hero" aria-label="Illustrated incident summary">
     <div class="airpower-illustration">

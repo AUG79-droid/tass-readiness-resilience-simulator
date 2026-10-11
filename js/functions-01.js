@@ -13,11 +13,11 @@ function render(){
 function renderLanding(root){
   const hasProgress = state.tutorialSeen && (state.incidentIndex > 0 || state.operationalResolved || state.investigationResolved || state.investmentResolved);
   const missions=[
-    ['01','AOG RECOVERY','Lifecycle thinking','Repair vs replace'],
-    ['02','REPAIR BOTTLENECK','Process flow','Circularity'],
-    ['03','SUPPLY SHOCK','Biodiversity sourcing','Resilience'],
-    ['04','DESIGN FEEDBACK','Life extension','Engineering loop'],
-    ['05','SYSTEM STRESS TEST','Integrated thinking','Trade-offs']
+    ['01','AOG RECOVERY','Lifecycle thinking','Repair vs replace','assets/missions/mission-01-aog-recovery.jpg'],
+    ['02','REPAIR BOTTLENECK','Process flow','Circularity','assets/missions/mission-02-repair-flow.jpg'],
+    ['03','SUPPLY SHOCK','Biodiversity sourcing','Resilience','assets/missions/mission-03-supply-traceability.jpg'],
+    ['04','DESIGN FEEDBACK','Life extension','Engineering loop','assets/missions/mission-04-design-feedback.jpg'],
+    ['05','SYSTEM STRESS TEST','Integrated thinking','Trade-offs','assets/missions/mission-05-stress-test.jpg']
   ];
   root.innerHTML = `
     <section class="game-landing">
@@ -39,7 +39,7 @@ function renderLanding(root){
           <button class="game-side-btn alt" id="conceptBtn"><span>Before you play</span><b>See what you’ll learn</b></button>
         </div>
         <div class="mission-deck" aria-label="Mission map">
-          ${missions.map((m,i)=>`<article class="mission-deck-card m${i+1}"><div class="mission-deck-number">${m[0]}</div><div><span>MISSION ${m[0]}</span><strong>${m[1]}</strong><p>${m[2]} · ${m[3]}</p></div><i>${i===0?'▶':'◆'}</i></article>`).join('')}
+          ${missions.map((m,i)=>`<article class="mission-deck-card m${i+1}"><img src="${m[4]}" alt="" width="1600" height="900" loading="lazy" decoding="async" /><div class="mission-deck-number">${m[0]}</div><div><span>MISSION ${m[0]}</span><strong>${m[1]}</strong><p>${m[2]} · ${m[3]}</p></div><i>${i===0?'▶':'◆'}</i></article>`).join('')}
         </div>
         <div class="landing-learning-ribbon"><span>YOU WILL LEARN</span><b>Lifecycle</b><b>Repairability</b><b>Supply resilience</b><b>Biodiversity sourcing</b><b>Process improvement</b><b>Design feedback</b></div>
       </div>
@@ -57,6 +57,10 @@ function renderLanding(root){
 }
 
 function renderGuideAvatar(context='default', mood='idle'){
+  return `<figure class="coach-character ${mood}" aria-label="ORA, your aerospace sustainability guide">
+    <img class="coach-photo" src="assets/ora-guide.jpg" alt="ORA, aerospace sustainability guide" width="800" height="1100" decoding="async" />
+    <span class="coach-photo-status" aria-hidden="true"></span>
+  </figure>`;
   return `<div class="coach-character ${mood}" aria-hidden="true">
     <svg class="coach-svg" viewBox="0 0 220 280" role="img" focusable="false">
       <defs>

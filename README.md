@@ -1,8 +1,12 @@
 # TASS Readiness & Resilience Simulator
 
-**Status: V2.3 published candidate — English version**
+**Status: V3.0 bilingual release — complete English and Spanish experiences**
 
 A browser-based **serious game / mission simulator** that teaches sustainability in aerospace through fictional In-Service decisions.
+
+The interface is available in complete English and Spanish versions through `?hubLang=en` and `?hubLang=es`. The selected language is also stored locally and can be changed at any time from the header.
+
+V3.0 adds a coherent cinematic visual system for all five missions, a redesigned responsive interface, an image-based ORA guide, synchronous localisation after every application render, accessible language controls and an automated visible-string localisation audit (`node tools/audit-i18n.cjs`).
 
 ## Learning objective
 

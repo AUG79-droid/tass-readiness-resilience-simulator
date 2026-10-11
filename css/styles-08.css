@@ -1,0 +1,117 @@
+/* V3.0 — bilingual visual and experience overhaul */
+:root{
+  --panel-deep:rgba(9,16,38,.92);
+  --panel-line:rgba(180,222,255,.16);
+  --cyan:#67e4ff;
+  --amber:#ffc86a;
+}
+
+body{
+  background:
+    radial-gradient(circle at 8% 0%,rgba(30,122,173,.24),transparent 31rem),
+    radial-gradient(circle at 92% 12%,rgba(109,76,194,.24),transparent 35rem),
+    linear-gradient(160deg,#081224 0%,#111535 52%,#111126 100%);
+}
+
+.topbar{
+  background:linear-gradient(90deg,rgba(7,17,36,.94),rgba(15,17,46,.9));
+  border-bottom-color:rgba(163,218,255,.13);
+  backdrop-filter:blur(18px) saturate(1.25);
+  box-shadow:0 12px 35px rgba(0,0,0,.18);
+}
+
+.topbar h1{letter-spacing:-.025em}
+.top-actions{flex-wrap:wrap;justify-content:flex-end}
+.language-toggle{padding:3px;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:rgba(255,255,255,.035)}
+.language-toggle .lang-btn{border:0!important;border-radius:9px!important;min-width:40px!important;padding:7px 9px!important}
+.language-toggle .lang-btn.active{background:linear-gradient(135deg,#54d8f5,#7770ff)!important;box-shadow:0 5px 14px rgba(61,191,238,.23)}
+
+.landing-main-card,.landing-orbit-card,.mission-hud,.mission-stage-visual,.mission-brief-panel,.mission-choice-arena{
+  border-color:var(--panel-line);
+}
+.landing-main-card{
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.04),transparent 45%),
+    linear-gradient(160deg,rgba(23,43,83,.96),rgba(30,28,77,.96));
+}
+.game-title-row h2{max-width:860px;text-wrap:balance}
+.game-title-row>div>p{max-width:760px;font-size:clamp(14px,1.15vw,18px);line-height:1.65;color:#d7e4f5}
+.game-start-btn{box-shadow:0 18px 40px rgba(86,93,255,.25)}
+
+.mission-deck{gap:10px}
+.mission-deck-card{
+  isolation:isolate;
+  min-height:168px;
+  padding:14px;
+  align-items:end;
+  background:#0b1730!important;
+  border-color:rgba(255,255,255,.13);
+  box-shadow:0 12px 28px rgba(4,7,20,.25);
+}
+.mission-deck-card::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(4,10,25,.05) 10%,rgba(7,12,31,.55) 52%,rgba(7,10,26,.96) 100%);
+}
+.mission-deck-card>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;filter:saturate(.82) contrast(1.04)}
+.mission-deck-card:hover>img{filter:saturate(1) contrast(1.06);transform:scale(1.045)}
+.mission-deck-card>img{transition:transform .35s ease,filter .35s ease}
+.mission-deck-card .mission-deck-number{position:absolute;top:12px;left:13px;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.mission-deck-card>div:not(.mission-deck-number){position:relative;z-index:1}
+.mission-deck-card>div>span{color:#a9efff;text-shadow:0 1px 8px #061020}
+.mission-deck-card>div>strong{font-size:12px;text-shadow:0 2px 8px #061020}
+.mission-deck-card>div>p{color:#e4ebf8;text-shadow:0 2px 8px #061020}
+.mission-deck-card>i{position:absolute;right:12px;top:12px;background:rgba(7,14,34,.62);backdrop-filter:blur(6px)}
+
+.coach-character{
+  position:relative;
+  overflow:hidden;
+  margin:0;
+  border-radius:34px 34px 18px 18px;
+  border:1px solid rgba(135,229,255,.34);
+  background:#10213c;
+  box-shadow:0 14px 34px rgba(3,9,25,.35),0 0 0 5px rgba(85,218,249,.055);
+}
+.coach-photo{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 15%;filter:saturate(.94) contrast(1.04)}
+.coach-photo-status{position:absolute;right:9px;top:9px;width:12px;height:12px;border-radius:50%;background:#68edc4;border:2px solid #112040;box-shadow:0 0 0 4px rgba(104,237,196,.15),0 0 18px #55efc2}
+.coach-character.thinking .coach-photo-status{background:#ffd071;box-shadow:0 0 0 4px rgba(255,208,113,.15),0 0 18px #ffd071}
+.coach-character.celebrate .coach-photo-status{background:#ff85d4;box-shadow:0 0 0 4px rgba(255,133,212,.16),0 0 18px #ff85d4}
+.coach-bubble{background:linear-gradient(145deg,rgba(63,53,151,.98),rgba(21,35,78,.99))}
+.coach-bubble>p{line-height:1.55}
+
+.mission-stage-visual{min-height:470px;background:#071224}
+.incident-visual-hero{position:absolute;inset:0;margin:0;overflow:hidden;background:#071224}
+.incident-visual-hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(4,10,24,.06) 35%,rgba(5,9,24,.94) 100%),linear-gradient(90deg,rgba(3,10,25,.04),rgba(3,10,25,.2))}
+.incident-visual-hero>img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;animation:missionImageIn .65s cubic-bezier(.2,.8,.2,1)}
+.incident-visual-hero figcaption{position:absolute;z-index:3;top:18px;right:18px;display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid rgba(255,255,255,.15);border-radius:999px;background:rgba(6,13,32,.68);backdrop-filter:blur(10px);box-shadow:0 8px 22px rgba(0,0,0,.2)}
+.incident-visual-hero figcaption span{color:#a8efff;font:900 8px var(--mono);letter-spacing:.1em}
+.incident-visual-hero figcaption b{color:#fff;font:900 8px var(--mono);letter-spacing:.06em;padding-left:8px;border-left:1px solid rgba(255,255,255,.18)}
+.stage-badge{background:rgba(7,15,35,.76);backdrop-filter:blur(8px);z-index:4}
+.stage-overlay-copy{z-index:4;background:linear-gradient(90deg,rgba(6,13,31,.92),rgba(12,18,48,.72) 70%,rgba(12,18,48,.42));border-color:rgba(179,227,255,.18);box-shadow:0 14px 36px rgba(0,0,0,.24)}
+.stage-overlay-copy strong{font-family:var(--sans);font-size:clamp(21px,2vw,30px);letter-spacing:-.03em;text-wrap:balance}
+.stage-overlay-copy p{font-size:12px;max-width:680px;color:#d9e5f4}
+@keyframes missionImageIn{from{opacity:.2;transform:scale(1.035)}to{opacity:1;transform:none}}
+
+.mission-brief-panel{background:linear-gradient(155deg,rgba(69,55,161,.96),rgba(24,31,76,.97))}
+.mission-brief-panel h3{text-wrap:balance}
+.mission-facts div{background:rgba(255,255,255,.075)}
+.game-choice-card{background:linear-gradient(150deg,rgba(255,255,255,.075),rgba(255,255,255,.025));box-shadow:inset 0 1px 0 rgba(255,255,255,.035)}
+.game-choice-card:focus-visible,.game-confirm-btn:focus-visible,.game-next-btn:focus-visible,.ghost-btn:focus-visible,.game-start-btn:focus-visible,.game-side-btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+
+@media(max-width:1100px){
+  .mission-stage-visual{min-height:420px}
+  .mission-deck{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .mission-deck-card:last-child{grid-column:1/-1}
+}
+@media(max-width:720px){
+  .topbar{align-items:flex-start}.topbar .brand-lockup h1{font-size:14px}.topbar .eyebrow{font-size:7px}
+  .save-status{display:none}.top-actions{gap:5px}.ghost-btn{padding:8px 9px;font-size:9px}
+  .mission-deck{grid-template-columns:1fr}.mission-deck-card:last-child{grid-column:auto}.mission-deck-card{min-height:145px}
+  .mission-stage-visual{min-height:360px}.incident-visual-hero>img{object-position:42% center}
+  .incident-visual-hero figcaption{left:10px;right:auto;top:48px}
+  .stage-overlay-copy{background:linear-gradient(180deg,rgba(6,13,31,.72),rgba(6,13,31,.96))}
+  .stage-overlay-copy p{font-size:10px}.mission-brief-panel h3{font-size:34px}
+  .floating-coach{grid-template-columns:92px 1fr}.coach-character{width:100px;height:132px}
+  .mission-coach-mount .coach-character{width:76px;height:104px;border-radius:22px 22px 13px 13px}
+}
+
+@media(prefers-reduced-motion:reduce){.incident-visual-hero>img,.mission-deck-card>img{animation:none!important;transition:none!important}}
