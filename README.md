@@ -1,4 +1,4 @@
-# TASS Readiness & Resilience Simulator
+# Readiness & Resilience Simulator
 
 **Status: V3.0 bilingual release — complete English and Spanish experiences**
 
