@@ -44,7 +44,7 @@ function renderLanding(root){
         <div class="landing-learning-ribbon"><span>YOU WILL LEARN</span><b>Lifecycle</b><b>Repairability</b><b>Supply resilience</b><b>Biodiversity sourcing</b><b>Process improvement</b><b>Design feedback</b></div>
       </div>
       <aside class="landing-orbit-card">
-        <div class="orbit-radar"><div class="orbit-ring r1"></div><div class="orbit-ring r2"></div><div class="orbit-ring r3"></div><span class="orbit-core">TASS</span><i class="orbit-blip b1"></i><i class="orbit-blip b2"></i><i class="orbit-blip b3"></i></div>
+        <div class="orbit-radar"><div class="orbit-ring r1"></div><div class="orbit-ring r2"></div><div class="orbit-ring r3"></div><span class="orbit-core">R&R</span><i class="orbit-blip b1"></i><i class="orbit-blip b2"></i><i class="orbit-blip b3"></i></div>
         <div class="orbit-copy"><span>YOUR CHALLENGE</span><h3>Keep capability ready without creating the next problem.</h3><p>Every fast fix has a lifecycle consequence. Every investment changes what happens months later.</p></div>
         <div class="orbit-rule"><b>NO PERFECT ANSWER</b><span>Read the trade-off. Learn the sustainability concept. Build a more resilient system.</span></div>
       </aside>
