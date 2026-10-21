@@ -9,12 +9,12 @@
   document.documentElement.lang = lang;
 
   const ES = lang === "es";
-  document.title = ES ? "TASS · Simulador de Disponibilidad y Resiliencia" : "TASS Readiness & Resilience Simulator";
+  document.title = ES ? "Simulador de Disponibilidad y Resiliencia" : "Readiness & Resilience Simulator";
   const metaDescription=document.querySelector('meta[name="description"]');
-  if(metaDescription && ES) metaDescription.content="Simulador formativo TASS sobre disponibilidad, resiliencia, ciclo de vida, reparación, suministro responsable y mejora de procesos en soporte In-Service.";
+  if(metaDescription && ES) metaDescription.content="Simulador formativo sobre disponibilidad, resiliencia, ciclo de vida, reparación, suministro responsable y mejora de procesos en soporte In-Service.";
 
   const exact = {
-    "TASS Readiness & Resilience Simulator":"TASS · Simulador de Disponibilidad y Resiliencia",
+    "Readiness & Resilience Simulator":"Simulador de Disponibilidad y Resiliencia",
     "IN-SERVICE LEARNING SIMULATION":"SIMULACIÓN DE APRENDIZAJE IN-SERVICE",
     "Local autosave":"Autoguardado local",
     "Session only":"Solo esta sesión",
@@ -453,7 +453,6 @@
     "Sustainability coach":"Guía de sostenibilidad",
     "Sustainability must survive simultaneous pressure":"La sostenibilidad debe resistir presiones simultáneas",
     "Sustainable operations improve the flow of existing assets through safe, controlled processes instead of compensating for weak handovers with more hardware.":"Las operaciones sostenibles mejoran el flujo de los activos existentes mediante procesos seguros y controlados, en lugar de compensar traspasos deficientes con más equipos.",
-    "TASS":"TASS",
     "TIER 1":"NIVEL 1",
     "The actuator failure triggered the event. Your diagnosis must explain why the support system could not absorb one failure without entering a stock emergency.":"El fallo del actuador desencadenó el evento. Tu diagnóstico debe explicar por qué el sistema de soporte no pudo absorber un fallo sin entrar en una emergencia de stock.",
     "The aircraft may already be recovered, but the system can still be exposed. Use the evidence provided to identify the process, support or sourcing condition that made the incident possible.":"Puede que la aeronave ya esté recuperada, pero el sistema puede seguir expuesto. Usa la evidencia disponible para identificar la condición de proceso, soporte o aprovisionamiento que hizo posible el incidente.",
