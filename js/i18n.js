@@ -780,7 +780,22 @@
     };
   }
 
+  // UI fragments created dynamically in the guided briefing and practice feedback.
+  // Keep these explicit: the on-page Spanish version must not rely on partial word matching.
+  Object.assign(exact, {
+    "SUSTAINABILITY OPS // MISSION SIMULATOR": "OPERACIONES DE SOSTENIBILIDAD // SIMULADOR DE MISIONES",
+    "Next": "Siguiente",
+    "Enter control room": "Entrar en la sala de control",
+    "Close briefing": "Cerrar la introducción",
+    "Readiness": "Disponibilidad",
+    "Local buffer": "Reserva local",
+    "Shared buffer": "Reserva compartida",
+    "Stock resilience": "Resiliencia de existencias"
+  });
+
   const dynamicRules = [
+    [/^STEP (\\d+) OF (\\d+)$/, "PASO $1 DE $2"],
+    [/^(Readiness|Local buffer|Shared buffer|Stock resilience)\\s*([+−-])$/, (full, metric, delta) => `${exact[metric] || metric} ${delta}`],
     [/^MISSION (\d+) COMPLETE$/,"MISIÓN $1 COMPLETADA"],
     [/^MISSION (\d+)$/,"MISIÓN $1"],
     [/^Mission (\d+)$/,"Misión $1"],
