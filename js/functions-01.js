@@ -39,7 +39,7 @@ function renderLanding(root){
           <button class="game-side-btn alt" id="conceptBtn"><span>Before you play</span><b>See what you’ll learn</b></button>
         </div>
         <div class="mission-deck" aria-label="Mission map">
-          ${missions.map((m,i)=>`<article class="mission-deck-card m${i+1}"><img src="${m[4]}" alt="" width="1600" height="900" loading="lazy" decoding="async" /><div class="mission-deck-number">${m[0]}</div><div><span>MISSION ${m[0]}</span><strong>${m[1]}</strong><p>${m[2]} · ${m[3]}</p></div><i>${i===0?'▶':'◆'}</i></article>`).join('')}
+          ${missions.map((m,i)=>`<article class="mission-deck-card m${i+1}"><img src="${m[4]}" alt="" width="1600" height="900" loading="lazy" decoding="async" /><div class="mission-deck-number">${m[0]}</div><div><span>MISSION ${m[0]}</span><strong>${m[1]}</strong><p><span>${m[2]}</span><span aria-hidden="true"> · </span><span>${m[3]}</span></p></div><i>${i===0?'▶':'◆'}</i></article>`).join('')}
         </div>
         <div class="landing-learning-ribbon"><span>YOU WILL LEARN</span><b>Lifecycle</b><b>Repairability</b><b>Supply resilience</b><b>Biodiversity sourcing</b><b>Process improvement</b><b>Design feedback</b></div>
       </div>
