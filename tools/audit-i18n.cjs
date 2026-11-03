@@ -49,10 +49,21 @@ const expectedUIKeys = [
   "Readiness",
   "Local buffer",
   "Shared buffer",
-  "Stock resilience"
+  "Stock resilience",
+  "OPTION",
+  "SELECTED",
+  "Minimise ORA",
+  "Repair loop",
+  "Flow efficiency",
+  "Avoided replacement",
+  "Governance",
+  "Traceability"
 ];
 const missingRuntimeKeys = expectedUIKeys.filter((key) => !keys.has(key));
 const missingStepRule = !(i18n.includes("PASO $1 DE $2") && i18n.includes("/^STEP ("));
+const missingTipRule = !(i18n.includes("CONSEJO $1 / $2") && i18n.includes("/^TIP"));
+const missingPhaseRule = !i18n.includes("RESPOND|INVESTIGATE|IMPROVE");
+const missingImageAltTranslation = !i18n.includes('"aria-label","title","placeholder","alt"');
 
 // Flag unreadable CSS font-size declarations, including font shorthands.
 const stylesRoot = path.join(__dirname, "..", "css");
@@ -69,9 +80,12 @@ for (const file of fs.readdirSync(stylesRoot).filter(name => /^styles-\d+\.css$/
     }
   }
 }
-if (missingRuntimeKeys.length || missingStepRule || tinyTypography.length) {
+if (missingRuntimeKeys.length || missingStepRule || missingTipRule || missingPhaseRule || missingImageAltTranslation || tinyTypography.length) {
   if (missingRuntimeKeys.length) console.error("Missing dynamic Spanish UI keys:", missingRuntimeKeys.join(", "));
   if (missingStepRule) console.error("Missing translation for STEP n OF n.");
+  if (missingTipRule) console.error("Missing dynamic ORA tip counter translation.");
+  if (missingPhaseRule) console.error("Missing numbered decision-phase translation.");
+  if (missingImageAltTranslation) console.error("Missing image alt attribute translation.");
   if (tinyTypography.length) console.error("Unreadable typography below 14px:", tinyTypography.join("\n"));
   process.exitCode = 1;
 } else {
