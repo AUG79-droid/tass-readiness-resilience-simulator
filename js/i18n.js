@@ -794,8 +794,8 @@
   });
 
   const dynamicRules = [
-    [/^STEP (\\d+) OF (\\d+)$/, "PASO $1 DE $2"],
-    [/^(Readiness|Local buffer|Shared buffer|Stock resilience)\\s*([+−-])$/, (full, metric, delta) => `${exact[metric] || metric} ${delta}`],
+    [/^STEP (\d+) OF (\d+)$/, "PASO $1 DE $2"],
+    [/^(Readiness|Local buffer|Shared buffer|Stock resilience)\s*([+−-])$/, (full, metric, delta) => `${exact[metric] || metric} ${delta}`],
     [/^MISSION (\d+) COMPLETE$/,"MISIÓN $1 COMPLETADA"],
     [/^MISSION (\d+)$/,"MISIÓN $1"],
     [/^Mission (\d+)$/,"Misión $1"],
