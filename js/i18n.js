@@ -795,7 +795,74 @@
     "Stock resilience": "Resiliencia de existencias"
   });
 
+
+  /* Shared mission chips, interactive labels, ORA accessibility and dynamic phases. */
+  Object.assign(exact, {
+    "OPTION": "OPCIÓN",
+    "SELECTED": "SELECCIONADA",
+    "TIP": "CONSEJO",
+    "Minimise ORA": "Minimizar ORA",
+    "Expand ORA": "Ampliar ORA",
+    "Lifecycle": "Ciclo de vida",
+    "Repair vs replacement": "Reparar frente a sustituir",
+    "Supply resilience": "Resiliencia del suministro",
+    "Prevention": "Prevención",
+    "Systems thinking": "Pensamiento sistémico",
+    "Process quality": "Calidad del proceso",
+    "Circularity": "Circularidad",
+    "Life extension": "Extensión de vida útil",
+    "Resilience": "Resiliencia",
+    "Repair loop": "Circuito de reparación",
+    "Flow efficiency": "Eficiencia del flujo",
+    "Avoided replacement": "Sustitución evitada",
+    "Process flow": "Flujo del proceso",
+    "Ownership": "Responsabilidades",
+    "First-time-right": "Hacerlo bien a la primera",
+    "Repairability": "Reparabilidad",
+    "Process maturity": "Madurez del proceso",
+    "Resource efficiency": "Eficiencia de recursos",
+    "Biodiversity": "Biodiversidad",
+    "Responsible sourcing": "Aprovisionamiento responsable",
+    "Traceability": "Trazabilidad",
+    "Concentration risk": "Riesgo de concentración",
+    "Upstream visibility": "Visibilidad de proveedores indirectos",
+    "Optionality": "Alternativas disponibles",
+    "Recovery": "Recuperación",
+    "Qualified sourcing": "Suministro cualificado",
+    "Design feedback": "Retroalimentación al diseño",
+    "Reliability": "Fiabilidad",
+    "Closed loop": "Ciclo cerrado",
+    "Evidence": "Evidencia",
+    "Design for In-Service": "Diseño para mantenimiento en servicio",
+    "Ecodesign": "Ecodiseño",
+    "Maintainability": "Facilidad de mantenimiento",
+    "Trade-offs": "Compensaciones",
+    "Adaptability": "Adaptabilidad",
+    "Risk prevention": "Prevención de riesgos",
+    "Continuous improvement": "Mejora continua",
+    "Governance": "Gobernanza",
+    "Lifecycle portfolio": "Cartera de ciclo de vida",
+    "OPERATIONAL CIRCULARITY": "CIRCULARIDAD OPERATIVA",
+    "PROCESS EFFICIENCY": "EFICIENCIA DEL PROCESO",
+    "ENABLE CIRCULARITY": "FACILITAR LA CIRCULARIDAD",
+    "RESPONSIBLE SOURCING": "APROVISIONAMIENTO RESPONSABLE",
+    "DEPENDENCY & TRACEABILITY": "DEPENDENCIA Y TRAZABILIDAD",
+    "SOURCING OPTIONALITY": "ALTERNATIVAS DE SUMINISTRO",
+    "DESIGN FOR THE LIFECYCLE": "DISEÑO PARA EL CICLO DE VIDA",
+    "CLOSED-LOOP LEARNING": "APRENDIZAJE EN CICLO CERRADO",
+    "ECO-DESIGN IN PRACTICE": "ECODISEÑO EN LA PRÁCTICA",
+    "SYSTEM RESILIENCE": "RESILIENCIA DEL SISTEMA",
+    "SYSTEMS THINKING": "PENSAMIENTO SISTÉMICO",
+    "LIFECYCLE THINKING": "PENSAMIENTO DE CICLO DE VIDA",
+    "PREVENTION": "PREVENCIÓN",
+    "CIRCULARITY & RESILIENCE": "CIRCULARIDAD Y RESILIENCIA",
+    "CONTINUOUS IMPROVEMENT": "MEJORA CONTINUA"
+});
+
   const dynamicRules = [
+    [/^TIP\s+(\d+)\s*\/\s*(\d+)$/, "CONSEJO $1 / $2"],
+    [/^(\d{2})\s*·\s*(RESPOND|INVESTIGATE|IMPROVE)$/, (full, phase, action) => `${phase} · ${exact[action] || action}`],
+    [/^SUSTAINABILITY CONCEPT\s*·\s*(.+)$/, (full, subject) => `CONCEPTO DE SOSTENIBILIDAD · ${exact[subject] || subject}`],
     [/^STEP (\d+) OF (\d+)$/, "PASO $1 DE $2"],
     [/^(Readiness|Local buffer|Shared buffer|Stock resilience)\s*([+−-])$/, (full, metric, delta) => `${exact[metric] || metric} ${delta}`],
     [/^MISSION (\d+) COMPLETE$/,"MISIÓN $1 COMPLETADA"],
@@ -829,10 +896,10 @@
     const nodes=[]; while(walker.nextNode()) nodes.push(walker.currentNode);
     nodes.forEach(n=>{const v=trText(n.nodeValue); if(v!==n.nodeValue) n.nodeValue=v;});
     const attrTargets = [];
-    if (root.nodeType === 1 && root.matches?.("[aria-label],[title],[placeholder]")) attrTargets.push(root);
-    root.querySelectorAll?.("[aria-label],[title],[placeholder]").forEach(el => attrTargets.push(el));
+    if (root.nodeType === 1 && root.matches?.("[aria-label],[title],[placeholder],[alt]")) attrTargets.push(root);
+    root.querySelectorAll?.("[aria-label],[title],[placeholder],[alt]").forEach(el => attrTargets.push(el));
     attrTargets.forEach(el => {
-      ["aria-label","title","placeholder"].forEach(a => {
+      ["aria-label","title","placeholder","alt"].forEach(a => {
         if (el.hasAttribute(a)) { const v=trText(el.getAttribute(a)); if(v!==el.getAttribute(a)) el.setAttribute(a,v); }
       });
     });
