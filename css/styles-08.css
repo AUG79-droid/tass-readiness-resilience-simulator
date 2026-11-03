@@ -367,3 +367,99 @@ body{
   .modal-foot button { flex:1 1 auto; }
   .mission-stage-visual { min-height:500px; }
 }
+
+
+/* V3.2 — contrast-safe image cards and readable bilingual subtitles.
+   Targets both ES and EN because they use the same image components.
+   IMPORTANT: previous global .mission-deck-card span sets display:block and
+   monospace. Localise its override to subtitle spans so they read inline. */
+@media screen {
+  .mission-deck-card {
+    min-height:260px;
+  }
+  .mission-deck-card::before {
+    background:linear-gradient(180deg,rgba(2,8,22,.03) 12%,rgba(2,8,22,.38) 48%,rgba(2,8,22,.86) 100%);
+  }
+  .mission-deck-card>div:not(.mission-deck-number) {
+    left:10px;
+    right:10px;
+    bottom:10px;
+    padding:11px 13px 12px;
+    border:1px solid rgba(180,231,255,.22);
+    border-radius:12px;
+    background:linear-gradient(115deg,rgba(3,12,30,.96),rgba(5,17,35,.90));
+    box-shadow:0 7px 22px rgba(0,0,0,.40);
+    -webkit-backdrop-filter:blur(5px);
+    backdrop-filter:blur(5px);
+  }
+  .mission-deck-card>div:not(.mission-deck-number)>span {
+    display:block;
+    color:#8CEBFF;
+    font-family:var(--mono);
+    font-size:14px;
+    font-weight:800;
+    letter-spacing:.04em;
+    line-height:1.35;
+    text-shadow:0 1px 3px rgba(0,0,0,.9);
+  }
+  .mission-deck-card>div:not(.mission-deck-number)>strong {
+    display:block;
+    margin-top:4px;
+    color:#FFFFFF;
+    font-family:var(--sans);
+    font-size:17px;
+    font-weight:800;
+    letter-spacing:-.015em;
+    line-height:1.22;
+    text-shadow:0 1px 4px rgba(0,0,0,.9);
+    max-width:none;
+  }
+  .mission-deck-card>div:not(.mission-deck-number)>p {
+    margin:6px 0 0;
+    color:#D9F3FF;
+    font-family:var(--sans);
+    font-size:15px;
+    font-weight:600;
+    letter-spacing:0;
+    line-height:1.42;
+    text-shadow:0 1px 3px rgba(0,0,0,.85);
+    overflow-wrap:normal;
+    word-break:normal;
+  }
+  .mission-deck-card>div:not(.mission-deck-number)>p>span {
+    display:inline;
+    font-family:var(--sans);
+    font-size:15px;
+    font-weight:600;
+    letter-spacing:0;
+    line-height:1.42;
+    color:#D9F3FF;
+    text-shadow:inherit;
+  }
+  .mission-deck-card>div:not(.mission-deck-number)>p>span[aria-hidden="true"] {
+    color:#86DFF7;
+  }
+
+  /* Other photography captions must use the same accessible contrast. */
+  .incident-visual-hero figcaption {
+    background:rgba(3,12,29,.93);
+    border-color:rgba(180,231,255,.28);
+  }
+  .incident-visual-hero figcaption span { color:#93EDFF; }
+  .incident-visual-hero figcaption b { color:#FFFFFF; }
+  .stage-overlay-copy {
+    background:linear-gradient(110deg,rgba(3,11,28,.96),rgba(7,19,42,.91));
+    border-color:rgba(180,231,255,.25);
+  }
+  .stage-overlay-copy strong { color:#FFFFFF; }
+  .stage-overlay-copy p { color:#D9F3FF; }
+}
+@media screen and (max-width:520px) {
+  .mission-deck-card,.mission-deck-card.m4,
+  .mission-deck-card.m5,.mission-deck-card:last-child {
+    min-height:265px;
+  }
+  .mission-deck-card>div:not(.mission-deck-number) {
+    left:9px;right:9px;bottom:9px;padding:12px;
+  }
+}
