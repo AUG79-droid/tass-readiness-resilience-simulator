@@ -3,7 +3,9 @@
 
   const params = new URLSearchParams(window.location.search);
   const queryLang = params.get("hubLang") || params.get("lang");
-  let lang = queryLang || localStorage.getItem("tass-language") || ((navigator.language||"").toLowerCase().startsWith("es") ? "es" : "en");
+  let savedLang = null;
+  try { savedLang = localStorage.getItem("tass-language"); } catch (e) {}
+  let lang = queryLang || savedLang || ((navigator.language||"").toLowerCase().startsWith("es") ? "es" : "en");
   if(!["es","en"].includes(lang)) lang="en";
   try { localStorage.setItem("tass-language", lang); } catch(e) {}
   document.documentElement.lang = lang;
@@ -826,8 +828,13 @@
     const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
     const nodes=[]; while(walker.nextNode()) nodes.push(walker.currentNode);
     nodes.forEach(n=>{const v=trText(n.nodeValue); if(v!==n.nodeValue) n.nodeValue=v;});
-    root.querySelectorAll?.("[aria-label],[title],[placeholder]").forEach(el=>{
-      ["aria-label","title","placeholder"].forEach(a=>{if(el.hasAttribute(a)){const v=trText(el.getAttribute(a)); if(v!==el.getAttribute(a)) el.setAttribute(a,v);}});
+    const attrTargets = [];
+    if (root.nodeType === 1 && root.matches?.("[aria-label],[title],[placeholder]")) attrTargets.push(root);
+    root.querySelectorAll?.("[aria-label],[title],[placeholder]").forEach(el => attrTargets.push(el));
+    attrTargets.forEach(el => {
+      ["aria-label","title","placeholder"].forEach(a => {
+        if (el.hasAttribute(a)) { const v=trText(el.getAttribute(a)); if(v!==el.getAttribute(a)) el.setAttribute(a,v); }
+      });
     });
   }
 
