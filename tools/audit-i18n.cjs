@@ -39,6 +39,17 @@ if (missing.length) {
 }
 
 
+// Each landing mission subtitle has two independently translated terms.
+const missionCardSource = fs.readFileSync(path.join(root, "functions-01.js"), "utf8");
+const missionTerms = ["Lifecycle thinking", "Repair vs replace", "Process flow", "Circularity", "Biodiversity sourcing", "Resilience", "Life extension", "Engineering loop", "Integrated thinking", "Trade-offs"];
+const missingMissionTerms = missionTerms.filter(term => !keys.has(term));
+const missionSubtitleBroken = !missionCardSource.includes("<p><span>${m[2]}</span><span aria-hidden=\"true\"> · </span><span>${m[3]}</span></p>");
+if (missingMissionTerms.length || missionSubtitleBroken) {
+  if (missingMissionTerms.length) console.error("Missing landing subtitle translations:", missingMissionTerms.join(", "));
+  if (missionSubtitleBroken) console.error("Landing subtitles must keep each translated term separate.");
+  process.exitCode = 1;
+}
+
 // Explicitly cover runtime-generated tutorial labels and metric deltas.
 // A static HTML-only scan cannot detect these assembled strings.
 const expectedUIKeys = [
