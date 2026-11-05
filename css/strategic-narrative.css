@@ -1,0 +1,89 @@
+/* Strategic narrative for the existing Readiness & Resilience Simulator.
+   This is a responsive learning layer; it does not modify mission mechanics. */
+.strategic-landing, .strategic-mission, .strategic-final {
+  color:#eaf5ff; background:linear-gradient(135deg,#0c2b42 0%,#0a1c31 100%);
+  border:1px solid #47758e; border-radius:16px;
+  padding:clamp(18px,2.3vw,30px); margin:22px 0;
+  box-shadow:0 8px 26px rgba(0,0,0,.16);
+  font-family:inherit; line-height:1.55;
+}
+.strategic-landing *, .strategic-mission *, .strategic-final * {box-sizing:border-box}
+.strategic-kicker,.strategic-section-head>span {
+  color:#90e7ff; font-size:15px; font-weight:800; letter-spacing:.05em;
+}
+.strategic-landing h3,.strategic-mission h3,.strategic-final h3 {
+  color:#fff; font-size:clamp(21px,2.3vw,29px); line-height:1.25;
+  margin:9px 0 10px;
+}
+.strategic-intro,.strategic-section-head>p {
+  color:#dfecf7; font-size:17px; margin:0 0 17px;
+}
+.strategic-pair,.strategic-final-grid {
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px; margin:14px 0;
+}
+.strategic-card {
+  min-width:0; border-radius:12px; padding:16px 18px;
+  background:#f4f9fd; color:#122c45; border:1px solid #bcd3e2;
+}
+.strategic-card.environmental {border-left:5px solid #3c8969}
+.strategic-card.operational {border-left:5px solid #168bd3}
+.strategic-card h4 {
+  color:#10385b; font-size:16px; line-height:1.35; margin:0 0 7px; font-weight:800;
+}
+.strategic-card p {
+  color:#1a344a; font-size:16px; line-height:1.5; margin:0;
+}
+.strategic-chips {display:flex;flex-wrap:wrap; gap:12px;margin:14px 0}
+.strategic-chips span {flex:1 1 230px;color:#e7f3fc;font-size:15px;line-height:1.5}
+.strategic-chips strong {color:#fff}
+.strategic-scope {
+  margin:12px 0 0; color:#cfe1ee; font-size:15px; line-height:1.55;
+}
+.strategic-resources {padding-top:12px;border-top:1px solid #385970}
+.strategic-section-head>h3 {margin-top:7px}
+.strategic-question {
+  background:#153c56; color:#effaff; border-left:4px solid #7fe4f5;
+  padding:12px 15px; border-radius:5px;
+  font-size:16px; line-height:1.55; margin:13px 0 0;
+}
+.strategic-question strong {color:#c9f5ff}
+.strategic-after-choice {margin-top:17px; border-top:1px solid #375b73;padding-top:15px}
+.strategic-after-choice>p {font-size:16px;color:#fff;font-weight:750;margin:0 0 10px}
+.strategic-metric-grid {display:flex;flex-wrap:wrap;gap:10px}
+.strategic-metric {
+  flex:1 1 160px; background:#eaf5fb; color:#163750; padding:11px 13px;
+  border-radius:8px; display:flex; justify-content:space-between;align-items:center;gap:10px;
+}
+.strategic-metric span {font-size:15px;line-height:1.35}
+.strategic-metric strong {font-size:19px;color:#123656;white-space:nowrap}
+.strategic-after-choice small {display:block; margin-top:8px;color:#c8e3ef;font-size:14px}
+.strategic-final-grid {grid-template-columns:repeat(3,minmax(0,1fr))}
+.strategic-limits {
+  padding:14px 17px;margin-top:17px;background:#142c43;
+  border:1px solid #476d85;border-radius:9px;
+}
+.strategic-limits strong {color:#fff;font-size:16px}
+.strategic-limits p {font-size:15px;line-height:1.55;color:#d9eaf6;margin:5px 0 0}
+.strategic-debrief {
+  background:#ecf7fd;color:#123a55;border-left:5px solid #168bd3;
+  margin:14px 0;padding:15px 18px;border-radius:10px;line-height:1.5;
+}
+.strategic-debrief span {display:block;font-size:14px;color:#1d628b;font-weight:800;letter-spacing:.05em}
+.strategic-debrief strong {display:block;margin:4px 0;color:#103650;font-size:19px}
+.strategic-debrief p {margin:0;color:#193e54;font-size:16px}
+@media(max-width:780px) {
+  .strategic-pair,.strategic-final-grid{grid-template-columns:1fr}
+  .strategic-landing,.strategic-mission,.strategic-final{padding:18px;margin:16px 0}
+  .strategic-chips{display:block}
+  .strategic-chips span{display:block;margin:8px 0}
+}
+@media print {
+  .strategic-landing,.strategic-mission,.strategic-final,.strategic-debrief {
+    color:#111!important;background:#fff!important;border:1px solid #aaa!important;
+    box-shadow:none!important;break-inside:avoid;
+  }
+  .strategic-kicker,.strategic-section-head>span,.strategic-landing h3,.strategic-mission h3,.strategic-final h3,.strategic-intro,.strategic-scope {
+    color:#111!important;
+  }
+}
