@@ -16,6 +16,8 @@ function applyDelta(delta={}){
     if(typeof delta[k] === "number") state.metrics[k] = clamp(state.metrics[k] + delta[k]);
   });
 }
+function investmentReserve(index=state.incidentIndex){return incidents.slice(index+1).reduce((sum,inc)=>sum+Math.min(...inc.investments.map(x=>x.cost)),0);}
+function canFund(inv){return !!inv&&inv.cost+investmentReserve()<=state.metrics.budget;}
 function conditionalDelta(incident){
   const bonus = {readiness:0,resilience:0,lifecycle:0,process:0,exposure:0};
   const notes=[];
@@ -32,11 +34,11 @@ function conditionalDelta(incident){
     if(state.flags.recoveryProgram){ bonus.lifecycle += 3; notes.push("The recovery programme absorbs part of the repeated component demand."); }
   }
   if(incident.id === "INC-05"){
-    const strongFlags = ["repairCapability","stockLogic","processOwnership","processVisibility","dispositionStandard","secondarySupplier","traceability","recoveryProgram","designReview","conditionData","repairability"];
+    const strongFlags = ["repairCapability","stockLogic","processOwnership","processVisibility","dispositionStandard","crossSkill","secondarySupplier","traceability","recoveryProgram","designReview","conditionData","repairability"];
     const count = strongFlags.filter(f=>state.flags[f]).length;
-    if(count >= 7){ bonus.readiness += 7; bonus.resilience += 9; bonus.process += 4; bonus.exposure -= 4; notes.push("Your earlier investments created several independent recovery routes. The final shock is materially easier to absorb."); }
-    else if(count >= 4){ bonus.readiness += 4; bonus.resilience += 5; bonus.process += 2; notes.push("You built some useful optionality, but the final shock still exposes gaps between repair, supply and process capabilities."); }
-    else { bonus.readiness -= 3; bonus.resilience -= 5; notes.push("Few structural capabilities were built earlier, so the final shock relies heavily on emergency actions and remaining buffers."); }
+    if(count >= 4){ bonus.readiness += 7; bonus.resilience += 9; bonus.process += 4; bonus.exposure -= 4; notes.push("Four earlier capabilities trigger the higher fictional resilience bonus. Independence and real effectiveness still require evidence."); }
+    else if(count >= 2){ bonus.readiness += 4; bonus.resilience += 5; bonus.process += 2; notes.push("Two or three earlier capabilities trigger the intermediate fictional bonus."); }
+    else { bonus.readiness -= 3; bonus.resilience -= 5; notes.push("Fewer than two earlier capabilities trigger a fictional penalty."); }
     if(state.flags.secondarySupplier){ bonus.exposure -= 4; bonus.resilience += 3; notes.push("Second-source qualification reduces the severity of the supplier constraint."); }
     if(state.flags.designReview){ bonus.lifecycle += 4; notes.push("Structured design feedback has reduced part of the recurring lifecycle burden."); }
   }

@@ -1,4 +1,4 @@
-const STORAGE_KEY = "tass-readiness-resilience-simulator-v4";
+const STORAGE_KEY = "tass-readiness-resilience-simulator-v5";
 const persistenceAvailable = (() => {
   try {
     const key = `${STORAGE_KEY}-test`;
@@ -25,9 +25,10 @@ const initialState = () => ({
     lifecycle: 48,
     process: 46,
     exposure: 62,
-    budget: 3200
+    budget: 1800
   },
-  maxBudget: 3200,
+  maxBudget: 1800,
+  appliedChecks: {},
   flags: {},
   history: [],
   completedIncidents: [],

@@ -90,3 +90,7 @@ and open `http://localhost:8080`.
 Before wider internal deployment, appropriate subject-matter validation of terminology/scenario realism and any required branding, information-security or communication approvals should be completed.
 
 V2.3 also ensures the landing page is always shown when the application is opened; any locally saved run can be resumed explicitly from the landing screen rather than opening directly inside a mission.
+
+## Applied resilience review — November 2026
+
+Five original missions, 15 original decisions and existing imagery retained. Added 15 bilingual theory sections and 10 worked formative questions with immediate correction. Exercise scores separate from the Navigator instrument. Hypothesis positions vary. Fictional budget reduced from €3.2m to €1.8m, with minimum future mission funding protected. Prior-capability thresholds are 4 and 2 rather than unreachable 7; these are game rules, not validated measures. Previous v4 local state isolated. Climate adaptation covers support exposure and recovery, not product qualification. Specialist and visual review remain required.

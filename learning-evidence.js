@@ -188,7 +188,7 @@ function show(mode,outcome){
    const result=el("p",t("Resultado inicial: ","Initial result: ")+score+"/4 ("+score*25+"%)","metric");result.dataset.initialScore=String(score);dialog.append(result);
    note(t("Tu puntuación inicial ya está registrada. Revisa las cuatro respuestas y sus explicaciones antes de empezar. No hay nota mínima.","Your initial score is recorded. Review all four answers and explanations before starting. There is no pass score."));
    reviewAnswers("pre",dialog);
-   dialog.append(button(t("Comenzar actividad","Start activity"),()=>{transition({type:"launch"});seenNonFinal=!terminal();close();check();}));
+   dialog.append(button(t("Comenzar actividad","Start activity"),()=>{document.dispatchEvent(new CustomEvent("sn-tass:new-run"));transition({type:"launch"});seenNonFinal=!terminal();close();check();}));
  }else if(mode==="finish"){
    note(config.manual?t("Indica si has terminado el recorrido de aprendizaje DESPUÉS de la evaluación inicial. La finalización es autodeclarada.","Indicate whether you completed the learning journey AFTER the initial assessment. Completion is self-reported."):eligible?t("Has llegado a la pantalla de resultados. Si has completado el recorrido después de la evaluación inicial, revisa tu resultado y realiza la evaluación final.","You reached the results screen. If you completed the journey after the initial assessment, review your result and take the final assessment."):t("La evaluación final de conocimientos se habilita cuando llegues a los resultados de la actividad. Puedes continuar o registrar una sesión parcial.","The final knowledge assessment becomes available when you reach the activity results. You can continue or record a partial session."));
    const row=el("div",undefined,"actions");
