@@ -34,11 +34,12 @@ function conditionalDelta(incident){
     if(state.flags.recoveryProgram){ bonus.lifecycle += 3; notes.push("The recovery programme absorbs part of the repeated component demand."); }
   }
   if(incident.id === "INC-05"){
-    const strongFlags = ["repairCapability","stockLogic","processOwnership","processVisibility","dispositionStandard","crossSkill","secondarySupplier","traceability","recoveryProgram","designReview","conditionData","repairability"];
-    const count = strongFlags.filter(f=>state.flags[f]).length;
-    if(count >= 4){ bonus.readiness += 7; bonus.resilience += 9; bonus.process += 4; bonus.exposure -= 4; notes.push("Four earlier capabilities trigger the higher fictional resilience bonus. Independence and real effectiveness still require evidence."); }
-    else if(count >= 2){ bonus.readiness += 4; bonus.resilience += 5; bonus.process += 2; notes.push("Two or three earlier capabilities trigger the intermediate fictional bonus."); }
-    else { bonus.readiness -= 3; bonus.resilience -= 5; notes.push("Fewer than two earlier capabilities trigger a fictional penalty."); }
+    const capabilityGroups = [["repairCapability","recoveryProgram","repairability","crossSkill"],["stockLogic","secondarySupplier","traceability"],["processOwnership","processVisibility","dispositionStandard","crossSkill"],["designReview","conditionData","repairability"]];
+    const count = capabilityGroups.filter(group=>group.some(f=>state.flags[f])).length;
+    const es = document.documentElement.lang === "es";
+    if(count >= 4){ bonus.readiness += 7; bonus.resilience += 9; bonus.process += 4; bonus.exposure -= 4; notes.push(es?"Las cuatro áreas de capacidad (reparación, suministro, procesos e ingeniería) activan la bonificación superior del juego. Su independencia y eficacia real requieren evidencia.":"All four capability areas (repair, supply, process and engineering) trigger the higher game bonus. Independence and actual effectiveness require evidence."); }
+    else if(count >= 2){ bonus.readiness += 4; bonus.resilience += 5; bonus.process += 2; notes.push(es?"Dos o tres áreas de capacidad activan la bonificación intermedia del juego.":"Two or three capability areas trigger the intermediate game bonus."); }
+    else { bonus.readiness -= 3; bonus.resilience -= 5; notes.push(es?"Menos de dos áreas de capacidad activan una penalización del juego.":"Fewer than two capability areas trigger a game penalty."); }
     if(state.flags.secondarySupplier){ bonus.exposure -= 4; bonus.resilience += 3; notes.push("Second-source qualification reduces the severity of the supplier constraint."); }
     if(state.flags.designReview){ bonus.lifecycle += 4; notes.push("Structured design feedback has reduced part of the recurring lifecycle burden."); }
   }
