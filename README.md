@@ -94,3 +94,7 @@ V2.3 also ensures the landing page is always shown when the application is opene
 ## Applied resilience review — November 2026
 
 Five original missions, 15 original decisions and existing imagery retained. Added 15 bilingual theory sections and 10 worked formative questions with immediate correction. Exercise scores separate from the Navigator instrument. Hypothesis positions vary. Fictional budget reduced from €3.2m to €1.8m, with minimum future mission funding protected. Final bonus uses coverage of four distinct capability areas (repair, supply, process, engineering), not a raw count of investments; thresholds are 4 and 2. These are game rules, not validated measures. Previous v4 local state isolated. Climate adaptation covers support exposure and recovery, not product qualification. Specialist and visual review remain required.
+
+## Cross-functional scope
+
+Readiness & Resilience Simulator is the public title. The five fictional scenarios use aircraft support as their context, but the learning is relevant to engineering, procurement, maintenance, operations, quality and programme management. The legacy repository slug, local storage and assessment ID are intentionally unchanged to preserve links and records. No departmental restriction or operational approval is implied.

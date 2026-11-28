@@ -13,11 +13,11 @@
   const ES = lang === "es";
   document.title = ES ? "Simulador de Disponibilidad y Resiliencia" : "Readiness & Resilience Simulator";
   const metaDescription=document.querySelector('meta[name="description"]');
-  if(metaDescription && ES) metaDescription.content="Simulador formativo sobre disponibilidad, resiliencia, ciclo de vida, reparación, suministro responsable y mejora de procesos en soporte In-Service.";
+  if(metaDescription && ES) metaDescription.content="Simulador formativo transversal sobre disponibilidad, resiliencia, ciclo de vida, reparación, suministro responsable y mejora de procesos aeroespaciales.";
 
   const exact = {
     "Readiness & Resilience Simulator":"Simulador de Disponibilidad y Resiliencia",
-    "IN-SERVICE LEARNING SIMULATION":"SIMULACIÓN DE APRENDIZAJE IN-SERVICE",
+    "CROSS-FUNCTIONAL AEROSPACE LEARNING":"APRENDIZAJE AEROESPACIAL TRANSVERSAL",
     "Local autosave":"Autoguardado local",
     "Session only":"Solo esta sesión",
     "Progress is stored only in this browser on this device":"El progreso se guarda únicamente en este navegador y dispositivo",
