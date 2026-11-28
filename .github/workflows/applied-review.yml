@@ -1,0 +1,20 @@
+name: Applied resilience review
+on:
+  push:
+    branches: [review/applied-resilience]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          for f in js/*.js learning-evidence.js; do node --check "$f"; done
+          node tools/audit-i18n.cjs
+      - run: npm install --no-save playwright
+      - run: npx playwright install --with-deps chromium
+      - run: |
+          python -m http.server 8080 >/tmp/tass-http.log 2>&1 &
+          node tools/applied-review.cjs

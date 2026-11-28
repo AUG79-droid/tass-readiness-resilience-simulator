@@ -12,7 +12,7 @@ function renderSimplePhaseContent(inc){
       <div class="mission-action-dock">${state.investigationResolved?`<button class="game-next-btn" id="nextPhase"><span>NEXT PHASE</span><strong>Improve the system</strong><i>→</i></button>`:`<button class="game-confirm-btn" id="confirmInvestigation" ${!sel?'disabled':''}><span>TEST HYPOTHESIS</span><strong>Confirm diagnosis</strong></button>`}</div>`;
   }
   const sel=state.selectedInvestment; const selected=inc.investments.find(x=>x.id===sel);
-  return `<div class="game-choice-grid investment-grid">${inc.investments.map((o,idx)=>{const unaffordable=o.cost>state.metrics.budget;return `<button type="button" class="game-choice-card c${idx+1} investment ${sel===o.id?'selected':''}" data-invest="${o.id}" ${state.investmentResolved||unaffordable?'disabled':''}><div class="choice-top"><i>€${o.cost}k</i><span>${unaffordable?'LOCKED':'CAPABILITY'}</span></div><h4>${o.title}</h4><p>${o.desc}</p><div class="choice-tags">${o.tags.map(t=>`<b>${t}</b>`).join('')}</div><div class="choice-cta">${unaffordable?'Not enough budget':sel===o.id?'Ready to fund':'Build this capability'} <span>→</span></div></button>`}).join('')}</div>
+  return `<div class="game-choice-grid investment-grid">${inc.investments.map((o,idx)=>{const unaffordable=!canFund(o);return `<button type="button" class="game-choice-card c${idx+1} investment ${sel===o.id?'selected':''}" data-invest="${o.id}" ${state.investmentResolved||unaffordable?'disabled':''}><div class="choice-top"><i>€${o.cost}k</i><span>${unaffordable?'LOCKED':'CAPABILITY'}</span></div><h4>${o.title}</h4><p>${o.desc}</p><div class="choice-tags">${o.tags.map(t=>`<b>${t}</b>`).join('')}</div><div class="choice-cta">${unaffordable?'Not enough budget':sel===o.id?'Ready to fund':'Build this capability'} <span>→</span></div></button>`}).join('')}</div>
     ${state.investmentResolved?`<div class="mission-reward capability"><div class="reward-icon">◆</div><div><span>CAPABILITY UNLOCKED</span><h4>${selected.title}</h4><p>${selected.feedback}</p><div class="delta-row">${renderDeltas(selected.delta)}<span class="delta down">Budget −€${selected.cost}k</span></div></div></div>${investmentSustainabilityOutcome(inc,selected)}`:''}
     <div class="mission-action-dock">${state.investmentResolved?`<button class="game-next-btn" id="nextIncident"><span>${state.incidentIndex===incidents.length-1?'FINAL':'ADVANCE'}</span><strong>${state.incidentIndex===incidents.length-1?'Complete simulation':'Continue to Month '+incidents[state.incidentIndex+1].month}</strong><i>→</i></button>`:`<button class="game-confirm-btn" id="confirmInvestment" ${!sel?'disabled':''}><span>COMMIT BUDGET</span><strong>Fund this capability</strong></button>`}</div>`;
 }
@@ -111,7 +111,7 @@ function renderPhaseContent(inc){
   const selected=inc.investments.find(x=>x.id===sel);
   return `<h3>Choose one systemic improvement to fund</h3>
     <div class="invest-grid">${inc.investments.map(o=>{
-      const unaffordable=o.cost>state.metrics.budget;
+      const unaffordable=!canFund(o);
       return `<button type="button" class="invest-card ${sel===o.id?"selected":""}" data-invest="${o.id}" ${state.investmentResolved||unaffordable?"disabled":""} style="${unaffordable?"opacity:.38;cursor:not-allowed":""}"><span class="option-code">CAPABILITY</span><span class="cost-tag">€${o.cost}k</span><h4>${o.title}</h4><p>${o.desc}</p><div class="option-tags">${o.tags.map(t=>`<span class="mini-tag">${t}</span>`).join("")}</div>${unaffordable?`<div class="mini-tag" style="margin-top:10px;display:inline-block;color:#ffaaaa">Insufficient budget</div>`:""}</button>`}).join("")}</div>
     ${state.investmentResolved?`<div class="consequence"><h4>Capability added to your operating system</h4><p>${selected.feedback}</p><div class="delta-row">${renderDeltas(selected.delta)}<span class="delta down">Budget −€${selected.cost}k</span></div></div>`:""}
     <div class="action-row"><span class="microcopy">Investments persist. The final incident will check how much operational optionality your earlier choices created.</span>${state.investmentResolved?`<button class="primary-btn" id="nextIncident">${state.incidentIndex===incidents.length-1?"Complete simulation":"Advance to Month "+incidents[state.incidentIndex+1].month}</button>`:`<button class="primary-btn" id="confirmInvestment" ${!sel?"disabled":""}>Fund selected improvement</button>`}</div>`;
@@ -127,7 +127,7 @@ function bindPhaseHandlers(inc){
     document.querySelectorAll("[data-route-preview]").forEach(btn=>btn.onclick=()=>chooseOperational(btn.dataset.routePreview));
     const confirm=document.getElementById("confirmOperational");
     if(confirm) confirm.onclick=()=>{
-      const o=inc.operational.find(x=>x.id===state.selectedOption); applyDelta(o.delta);
+      const o=inc.operational.find(x=>x.id===state.selectedOption); if(!o||state.operationalResolved)return; applyDelta(o.delta);
       const conditional=conditionalDelta(inc); applyDelta(conditional.bonus);
       state.operationalResolved=true;
       addHistory("operational",`${inc.id}: ${o.title}`);
@@ -138,7 +138,7 @@ function bindPhaseHandlers(inc){
     document.querySelectorAll("[data-evidence]").forEach(btn=>btn.onclick=()=>{ state.selectedEvidence=btn.dataset.evidence; saveState(); render(); });
     const confirm=document.getElementById("confirmInvestigation");
     if(confirm) confirm.onclick=()=>{
-      const e=inc.investigation.find(x=>x.id===state.selectedEvidence); state.metrics.process=clamp(state.metrics.process+(e.correct?4:-2)); state.investigationResolved=true;
+      const e=inc.investigation.find(x=>x.id===state.selectedEvidence); if(!e||state.investigationResolved)return; state.metrics.process=clamp(state.metrics.process+(e.correct?4:-2)); state.investigationResolved=true;
       addHistory("investigation",`${inc.id}: ${e.correct?"Systemic root cause identified":"Diagnosis revised after evidence review"}`);
       saveState(); render();
     };
@@ -146,7 +146,7 @@ function bindPhaseHandlers(inc){
     document.querySelectorAll("[data-invest]").forEach(btn=>btn.onclick=()=>{ state.selectedInvestment=btn.dataset.invest; saveState(); render(); });
     const confirm=document.getElementById("confirmInvestment");
     if(confirm) confirm.onclick=()=>{
-      const inv=inc.investments.find(x=>x.id===state.selectedInvestment); if(inv.cost>state.metrics.budget) return;
+      const inv=inc.investments.find(x=>x.id===state.selectedInvestment); if(!canFund(inv)||state.investmentResolved) return;
       state.metrics.budget-=inv.cost; applyDelta(inv.delta); state.flags[inv.id]=true; state.investmentResolved=true;
       addHistory("investment",`${inc.id}: funded ${inv.title} (€${inv.cost}k)`); saveState(); render();
     };
